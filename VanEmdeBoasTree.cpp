@@ -5,6 +5,14 @@ using namespace std;
 class VEBTree
 {
 public:
+    VEBTree()
+    {
+
+    }
+    ~VEBTree()
+    {
+
+    }
     void Find()
     {
 
