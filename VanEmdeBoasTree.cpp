@@ -1,5 +1,6 @@
 ﻿
 #include <iostream>
+#include <vector>
 using namespace std;
 #define ULL unsigned long long
 
@@ -10,9 +11,7 @@ public:
     {
         _k = K;
         _none = (1 << _k);
-        _minValue = _none;
-
-        
+        _minValue = _none; 
     }
    
     ~VEBTree()
@@ -36,11 +35,11 @@ public:
     {
 
     }
-    ULL Min()
+    ULL GetMin()
     {
         return _minValue;
     }
-    ULL Max()
+    ULL GetMax()
     {
         return _maxValue;
     }
@@ -60,9 +59,9 @@ public:
             return false;
     }
 private:
-    ULL Low(ULL key)
+    ULL Low( ULL key )
     {
-        return (key & (_k / 2));
+        return (key & ((1 << (_k / 2)) - 1));
     }
     ULL High(ULL key)
     {
