@@ -12,7 +12,7 @@ public:
         _k = K;
         _none = (1 << _k);
         _minValue = _none;
-        if ( _k <= 2 )
+        if ( _k <= 1 )
         {
             aux = NULL;
             children = vector<VEBTree*>( 0 );
@@ -43,8 +43,10 @@ public:
             return false;
             
         }
-        if ( (*this)._minValue == x || (*this)._maxValue == x ) return true;
-        //return Find( *(this).children[High( x )], Low( x ) );
+
+        if ( x >= _none ) return false;
+        if ( _minValue == x || _maxValue == x ) return true;
+        return children[High(x)]->Find(Low(x));
         
     }
     void Insert( ULL x)
@@ -71,15 +73,15 @@ public:
                 {
                     Swap( x, _maxValue );
                 }
-                if ( _k != 2 )
+                if ( _k != 1 )
                 {
                     if ( children[High( x )]->Empty() )
                     {
                         aux->Insert( High( x ) );
                     }
-
+                    children[High( x )]->Insert( Low( x ) );
                 }
-                children[High( x )]->Insert( Low( x ) );
+                
             }
             
 
@@ -111,7 +113,7 @@ public:
     }
     bool Empty()
     {
-        if ( (*this)._minValue == _none )
+        if ( _minValue == _none )
             return true;
         else 
             return false;
@@ -147,6 +149,11 @@ int main()
     T.Insert( 5 );
     T.Insert( 14 );
     T.Insert( 15 );
+    vector <bool> v;
+    for ( int i = 16; i < 25; i++ )
+    {
+        v.push_back( T.Find( i ) );
+    }
 
 }
 
