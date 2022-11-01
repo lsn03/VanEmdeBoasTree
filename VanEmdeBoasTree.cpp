@@ -91,7 +91,20 @@ public:
         
         
     }
-    void Remove()
+    void Remove(ULL x)
+    {
+        if ( _minValue == x and _maxValue == x )
+        {
+            _minValue = _none;
+            return;
+        }
+
+    }
+    void Next()
+    {
+
+    }
+    void Prev()
     {
 
     }
@@ -103,14 +116,6 @@ public:
     {
         return _maxValue;
     }
-    void Next()
-    {
-
-    }
-    void Prev()
-    {
-
-    }
     bool Empty()
     {
         if ( _minValue == _none )
@@ -118,6 +123,7 @@ public:
         else 
             return false;
     }
+
 private:
     ULL Low( ULL key )
     {
@@ -126,6 +132,10 @@ private:
     ULL High(ULL key)
     {
         return (key >> (_k / 2));
+    }
+    ULL Merge(ULL high,ULL low)
+    {
+        return (high << (_k / 2) )+low;
     }
     void Swap( ULL a, ULL b )
     {
@@ -149,11 +159,13 @@ int main()
     T.Insert( 5 );
     T.Insert( 14 );
     T.Insert( 15 );
-    vector <bool> v;
+    T.Insert( 14 );
+   
+    /* vector <bool> v;
     for ( int i = 16; i < 25; i++ )
     {
         v.push_back( T.Find( i ) );
-    }
+    }*/
 
 }
 
