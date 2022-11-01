@@ -36,56 +36,58 @@ public:
     {
 
     }
-    bool Find(VEBTree t,ULL x )
+    bool Find(ULL x )
     {
-        if ( Empty(t) )
+        if ( Empty() )
         {
             return false;
+            
         }
-        if ( t._minValue == x || t._maxValue == x ) return true;
-        return Find( *t.children[High( x )], Low( x ) );
+        if ( (*this)._minValue == x || (*this)._maxValue == x ) return true;
+        //return Find( *(this).children[High( x )], Low( x ) );
         
     }
-    void Insert(VEBTree& t, ULL x)
+    void Insert( ULL x)
     {
-        if ( Empty( t ) )
+        if ( Empty() )
         {
-            t._minValue = x;
-            t._maxValue = x;
+            _minValue = _maxValue = x;
+            
         }
         else
         {
-            if ( t._minValue == t._maxValue )
+            if ( _minValue == _maxValue )
             {
-                if ( t._minValue < x )
-                {
-                    t._minValue = x;
-                }
-                else
-                {
-                    t._maxValue = x;
-                }
+                _minValue = min( _minValue, x );
+                _maxValue = max( _maxValue, x );
             }
             else
             {
-                if ( t._minValue > x )
+                if ( x < _minValue )
                 {
-                    Swap( t._minValue, x );
+                    Swap( x, _minValue );
                 }
-                if ( t._maxValue < x )
+                if ( x > _maxValue )
                 {
-                    Swap( t._maxValue, x );
+                    Swap( x, _maxValue );
                 }
-                if ( t._k != 1 )
+                if ( _k != 2 )
                 {
-                    if ( Empty( *t.children[High( x )] ) )
+                    if ( children[High( x )]->Empty() )
                     {
-                        Insert( *t.aux, High( x ) );
+                        aux->Insert( High( x ) );
                     }
-                    Insert( *t.children[High( x )], Low( x ) );
+
                 }
+                children[High( x )]->Insert( Low( x ) );
             }
+            
+
         }
+        
+        
+        
+        
     }
     void Remove()
     {
@@ -107,9 +109,9 @@ public:
     {
 
     }
-    bool Empty(VEBTree t)
+    bool Empty()
     {
-        if ( t._minValue == _none )
+        if ( (*this)._minValue == _none )
             return true;
         else 
             return false;
@@ -138,13 +140,13 @@ private:
 int main()
 {
     VEBTree T( 4 );
-    T.Insert( T, 0 );
-    T.Insert( T, 1 );
-    T.Insert( T, 2 );
-    T.Insert( T, 3 );
-    T.Insert( T, 5 );
-    T.Insert( T, 14 );
-    T.Insert( T, 15);
+    T.Insert( 0 );
+    T.Insert( 1 );
+    T.Insert( 2 );
+    T.Insert( 3 );
+    T.Insert( 5 );
+    T.Insert( 14 );
+    T.Insert( 15 );
 
 }
 
