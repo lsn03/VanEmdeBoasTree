@@ -1,6 +1,7 @@
 ﻿
 #include <iostream>
 #include <vector>
+#include <fstream>
 using namespace std;
 #define ULL unsigned long long
 
@@ -45,7 +46,7 @@ public:
         }
 
         if ( x >= _none ) return false;
-        if ( _minValue == x || _maxValue == x ) return true;
+        if ( _minValue == x && _maxValue != 0 || _maxValue == x ) return true;
         return children[High(x)]->Find(Low(x));
         
     }
@@ -86,6 +87,7 @@ public:
     }
     void Remove(ULL x)
     {
+        if ( !Find( x ) ) return;
         if ( _minValue == x && _maxValue == x )
         {
             _minValue = _none;
@@ -109,18 +111,10 @@ public:
                 _maxValue = _minValue;
                 return;
             }
-            
-        }
-        else
-        {
-            if ( aux->Empty() )
-            {
-                return;
-            }
-
             x = Merge( aux->_maxValue, children[aux->_maxValue]->_maxValue );
             _maxValue = x;
         }
+       
         
         if ( aux->Empty() )
             return;
@@ -182,6 +176,9 @@ private:
 
 int main()
 {
+    ifstream fin( "1.in" );
+    fin.close();
+
     VEBTree T( 4 );
     T.Insert( 0 );
     T.Insert( 1 );
@@ -192,18 +189,53 @@ int main()
     T.Insert( 15 );
 
    
+    VEBTree T2( 4 );
+    T2.Insert( 15 );
+    T2.Insert( 14 );
+    T2.Insert( 5 );
+    T2.Insert( 3 );
+    T2.Insert( 2 );
+    T2.Insert( 1 );
+    T2.Insert( 0 );
+
+
+    T2.Remove( 15 );
+    T2.Remove( 14 );
+    T2.Remove( 5 );
+    T2.Remove( 3 );
+    T2.Remove( 2 );
+    T2.Remove( 1 );
+    T2.Remove( 0 );
+    T2;
+    T;
    /* T.Remove( 0 );
     bool f = T.Find( 0 );
     T.Remove( 1 );
-    bool f1 = T.Find( 1);*/
-    
+    bool f1 = T.Find( 1);
+    */
+
+   /* T.Remove( 0 );
+    T.Find( 0 );
+    T.Remove( 1 );
+    T.Find( 1 );
+    T.Remove( 2 );
+    T.Find( 2 );
+    T.Remove( 3 );
+    T.Find( 3 );
+    T.Remove( 5 );
+    T.Find( 5 );
+
+    T.Remove( 14 );
+    T.Find( 14 );
+    T.Remove( 15 );
+    T.Find( 15 );*/
    
     bool b = T.Find( 1 );
-   vector <bool> v;
+    vector <bool> v;
     for ( int i = 0; i < 16; i++ )
     {
-        T.Remove( i );
-        v.push_back( T.Find(i) );
+        T2.Remove( i );
+        v.push_back( T2.Find(i) );
     }
 
 }
