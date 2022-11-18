@@ -38,15 +38,6 @@
 
 [*4. Реализация алгоритма*](#4-реализация-алгоритма)
 
-[*4.1 Сложение длинных чисел*](#41-сложение-длинных-чисел)
-
-[*4.2 Вычитание длинных чисел*](#42-вычитание-длинных-чисел)
-
-[*4.3 Умножение длинных чисел (базовый метод)*](#43-умножение-длинных-чисел-базовый-метод)
-
-[*4.4 Умножение длинных чисел (Алгоритм Карацубы)*](#44-умножение-длинных-чисел-алгоритм-карацубы)
-
-[*4.5 Умножение длинных чисел (Быстрое и Дискретное преобразование фурье, Алгоритм Кули-Тьюки)*](#45-умножение-длинных-чисел-быстрое-и-дискретное-преобразование-фурье-алгоритм-кули-тьюки)
 
 [*Список литературы*](#список-литературы)
 # 1. Введение
@@ -73,3 +64,32 @@
 Дерево Ван Эмде Боаса - это структура данных, представляющая собой дерево поиска, которая позволяет эффективно работать с неотрицательными числами в диапазоне  от 0 включительно  до $2^k$ не включительно 
 Особенностью этой структуры является то, что операции выполняются за O(log(k)), иначе говоря за асимптотику O(n*log(log(U))) , где k - количество бит в числе, U = $2^k$, что асимптотически лучше, чем O(log(n)) в большинстве других деревьях поиска, где n - количество элементов в дереве.
 # 4. Реализация алгоритма
+# Список литературы
+1.	https://neerc.ifmo.ru/wiki/index.php?title=Дерево_ван_Эмде_Боаса#.D0.9F.D1.80.D0.B5.D0.B8.D0.BC.D1.83.D1.89.D0.B5.D1.81.D1.82.D0.B2.D0.B0_.D0.B8_.D0.BD.D0.B5.D0.B4.D0.BE.D1.81.D1.82.D0.B0.D1.82.D0.BA.D0.B8
+2.	https://habr.com/ru/post/125499/
+3.	https://en.wikipedia.org/wiki/Van_Emde_Boas_tree#Insert
+4.	https://ieeexplore.ieee.org/document/9622837
+5.	https://iq.opengenus.org/van-emde-boas-tree/
+6.	http://web.stanford.edu/class/archive/cs/cs166/cs166.1166/lectures/14/Slides14.pdf
+7.	https://www.quora.com/How-is-a-van-Emde-Boas-tree-used-in-practice
+8.	https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/resources/lecture-4-divide-conquer-van-emde-boas-trees/
+9.	https://p2k.unkris.ac.id/IT/en/3065-2962/van-Emde-Boas-tree_15988_p2k-unkris.html
+10.	 http://www2.hawaii.edu/~nodari/teaching/s16/notes/notes10.pdf
+11.	 https://ru.frwiki.wiki/wiki/Arbre_de_Van_Emde_Boas
+12.	 https://wiki5.ru/wiki/Van_Emde_Boas_tree
+13.	 https://wikicsu.ru/wiki/Van_Emde_Boas_tree
+14.	 https://compscicenter.ru/courses/advanced-algo_part2/2019-spring/classes/4545/
+15.	 https://compsciclub.ru/en/courses/advanced-algo_part2/2022-spring/classes/9351/
+16.	 https://rsdn.org/forum/alg/4367346.1
+17.	 https://examentv.ru/informatika/7820-9-derevo-van-emde-boasa-bystryi-cifrovoi-bor.html
+18.	 https://tech.kontur.ru/algorithms-for-everyone
+19.	 http://www-di.inf.puc-rio.br/~laber/vanEmdeBoas.pdf
+20.	 https://www.isa-afp.org/entries/Van_Emde_Boas_Trees.html
+21.	 https://www.isa-afp.org/theories/van_emde_boas_trees/#VEBT_Insert
+22.	 https://www.isa-afp.org/theories/van_emde_boas_trees/#VEBT_Delete.html
+23.	 https://fileadmin.cs.lth.se/cs/Personal/Rolf_Karlsson/lect12.pdf
+24.	 https://bjpcjp.github.io/pdfs/math/van-emde-boas-trees-ITA.pdf
+25.	 http://www.cs.tau.ac.il/~zwick/Adv-Alg-2015/van-Emde-Boas.pdf
+26.	 http://www14.in.tum.de/lehre/2014WS/ea/split/sec-van-Emde-Boas-Trees-single.pdf
+27.	 http://www.cs.cmu.edu/afs/cs/academic/class/15750-s19/ScribeNotes/lecture7.pdf
+
