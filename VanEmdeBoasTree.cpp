@@ -1,4 +1,4 @@
-﻿
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -125,11 +125,131 @@ public:
         }
         
     }
-    void Next()
+    int Next(ULL x)
     {
 
+        /*if ( x <= _minValue )
+        {
+            return _minValue;
+        }
+        if ( Empty() || x >= _maxValue )
+        {
+            return _none;
+        }
+        if ( _k == 1 )
+        {
+            return _maxValue == x ? x : _none;
+        }
+        ULL x_High = High( x );
+        ULL x_Low = Low( x );
+
+        if ( children[x_High] != NULL && x_Low <= children[x_High]->_maxValue )
+        {
+            return Merge( x_High, children[x_High]->Next( x_Low ) );
+        }
+        else if ( aux != NULL )
+        {
+            ULL nextHigh = aux->Next( x_High + 1 );
+            if ( nextHigh != _none )
+            {
+                return Merge( nextHigh, children[nextHigh]->_minValue );
+            }
+        }
+        return _none;*/
+        /*
+        if ( Empty() || x >= _maxValue )
+        {
+            return _none;
+        }
+        if ( x < _minValue )
+        {
+            return _minValue;
+        }
+        if ( x == _minValue )
+        {
+            if ( aux->Empty() )
+            {
+                return _maxValue;
+            }
+            return Merge( aux->_minValue, children[aux->_minValue]->_maxValue );
+        }
+        int a = children[High( x )]->Next( Low( x ) );
+        if ( a != _none )
+        {
+            return Merge( High( x ), a );
+        }
+        int b = aux->Next( High( x ) );
+        if ( b == _none )
+        {
+            return _maxValue;
+        }
+        return Merge( b, children[b]->_minValue );
+        */
+        /*
+        if ( Empty() || x >= _maxValue )
+        {
+            return _none;
+        }
+        if ( x < _minValue )
+        {
+            return _minValue;
+
+        }
+        if ( aux->Empty() )
+        {
+            return _maxValue;
+        }
+        if ( !(children[High( x )]->Empty()) && Low( x ) < children[High( x )]->_maxValue )
+        {
+            return Merge( High( x ), children[High( x )]->Next( Low( x ) ) );
+        }
+        else
+        {
+            int next_high = aux->Next( High( x ) );
+            if ( next_high != _none )
+                return Merge( next_high, children[next_high]->_minValue );
+            else
+            {
+                return _maxValue;
+            }
+           // return _none;
+        }*/
+
+        /*if ( Empty() || x > _maxValue )
+        {
+            return _none;
+        }
+        if ( x <= _minValue )
+        {
+            return _minValue;
+
+        }
+        if ( _k == 1 )
+        {
+            if ( _maxValue == x )
+            {
+                return _maxValue;
+            }
+            else
+            {
+                return _none;
+            }
+        }
+        if ( !(children[High( x )]->Empty()) && Low( x ) <= children[High( x )]->_maxValue)
+        {
+            return Merge( High( x ), children[High( x )]->Next( Low( x ) ));
+        }
+        else
+        {
+            int next_high = aux->Next( High( x ) + 1 );
+            if ( next_high != _none )
+                return Merge( next_high, children[next_high]->_minValue );
+            return _none;
+        }*/
+
+
     }
-    void Prev()
+    int Prev()
     {
 
     }
@@ -162,7 +282,7 @@ private:
     {
         return (high << (_k / 2) )+low;
     }
-    void Swap( ULL a, ULL b )
+    void Swap( ULL& a, ULL& b )
     {
         ULL temp = a;
         a = b;
@@ -189,7 +309,7 @@ int main()
     T.Insert( 15 );
 
    
-    VEBTree T2( 4 );
+   /* VEBTree T2( 4 );
     T2.Insert( 15 );
     T2.Insert( 14 );
     T2.Insert( 5 );
@@ -207,7 +327,7 @@ int main()
     T2.Remove( 1 );
     T2.Remove( 0 );
     T2;
-    T;
+    T;*/
    /* T.Remove( 0 );
     bool f = T.Find( 0 );
     T.Remove( 1 );
@@ -230,12 +350,14 @@ int main()
     T.Remove( 15 );
     T.Find( 15 );*/
    
-    bool b = T.Find( 1 );
+   // bool b = T.Find( 1 );
     vector <bool> v;
     for ( int i = 0; i < 16; i++ )
     {
-        T2.Remove( i );
-        v.push_back( T2.Find(i) );
+        T.Remove( i );
+        cout  << "\t"<<T.Find(i) << endl;
+      /*  T2.Remove( i );
+        v.push_back( T2.Find(i) );*/
     }
 
 }
