@@ -3,16 +3,18 @@
 #include <vector>
 #include <fstream>
 using namespace std;
-#define ULL unsigned long long
+#define ll  long long
 
+ll const _none = -1;
 class VEBTree
 {
 public:
     VEBTree( int K )
     {
         _k = K;
-        _none = (1 << _k);
+       
         _minValue = _none;
+        _maxValue = _none;
         if ( _k <= 1 )
         {
             aux = NULL;
@@ -37,7 +39,7 @@ public:
     {
 
     }
-    bool Find(ULL x )
+    bool Find(ll x )
     {
         if ( Empty() )
         {
@@ -45,53 +47,57 @@ public:
             
         }
 
-        if ( x >= _none ) return false;
+        if ( x >= (1<<_k) ) return false;
         if ( _minValue == x && _maxValue != 0 || _maxValue == x ) return true;
         return children[High(x)]->Find(Low(x));
         
     }
-    void Insert( ULL x)
+    void Insert( ll x)
     {
+        
+
         if ( Empty() )
         {
-            _minValue = _maxValue = x;
+            _minValue = x;
+            _maxValue = x;
             
         }
         else
         {
-            if ( _minValue == _maxValue )
+            
+            if ( x < _minValue )
             {
-                _minValue = min( _minValue, x );
-                _maxValue = max( _maxValue, x );
+                Swap( x, _minValue );
             }
-            else
+           
+            if ( _k != 1 )
             {
-                if ( x < _minValue )
+                if ( children[High( x )]->Empty() )
                 {
-                    Swap( x, _minValue );
+                    aux->Insert( High( x ) );
+                    children[High( x )]->_minValue = Low( x );
+                    children[High( x )]->_maxValue = Low( x );
                 }
-                if ( x > _maxValue )
+                else
                 {
-                    Swap( x, _maxValue );
-                }
-                if ( _k != 1 )
-                {
-                    if ( children[High( x )]->Empty() )
-                    {
-                        aux->Insert( High( x ) );
-                    }
                     children[High( x )]->Insert( Low( x ) );
-                }   
+                }
+
             }
+            if ( x > _maxValue )
+            {
+                _maxValue = x;
+            }
+            
         }
     }
-    void Remove(ULL x)
+    void Remove(ll x)
     {
         if ( !Find( x ) ) return;
         if ( _minValue == x && _maxValue == x )
         {
             _minValue = _none;
-            _maxValue = 0;
+            _maxValue = _none;
             return;
         }
         if ( _minValue == x )
@@ -125,8 +131,47 @@ public:
         }
         
     }
-    int Next(ULL x)
+    ll Next(ll x)
     {
+        
+        if ( _k == 1 )
+        {
+
+            if ( x == 0 && _maxValue == 1 )
+            {
+                return 1;
+            }
+            else
+            {
+                return _none;
+            }
+        }
+        else if ( _minValue != _none && x < _minValue )
+        {
+            return _minValue;
+        }
+        else
+        {
+            ll maxlow = children[High( x )]->_maxValue;
+            if ( maxlow != _none && Low( x ) < maxlow )
+            {
+                ll offset = children[High( x )]->Next( Low( x ) );
+                return Merge( High( x ), offset );
+            }
+            else
+            {
+                int next = aux->Next( High( x ) );
+                if ( next == _none )
+                {
+                    return _none;
+                }
+                else
+                {
+                    return Merge( next, children[next]->_minValue );
+                }
+            }
+        }
+
 
         /*if ( x <= _minValue )
         {
@@ -253,11 +298,11 @@ public:
     {
 
     }
-    ULL GetMin()
+    ll GetMin()
     {
         return _minValue;
     }
-    ULL GetMax()
+    ll GetMax()
     {
         return _maxValue;
     }
@@ -270,26 +315,26 @@ public:
     }
 
 private:
-    ULL Low( ULL key )
+    ll Low( ll key )
     {
         return (key & ((1 << (_k / 2)) - 1));
     }
-    ULL High(ULL key)
+    ll High(ll key)
     {
         return (key >> (_k / 2));
     }
-    ULL Merge(ULL high,ULL low)
+    ll Merge(ll high,ll low)
     {
         return (high << (_k / 2) )+low;
     }
-    void Swap( ULL& a, ULL& b )
+    void Swap( ll& a, ll& b )
     {
-        ULL temp = a;
+        ll temp = a;
         a = b;
         b = temp;
     }
     int _k;
-    ULL _minValue, _maxValue, _none;
+    ll _minValue, _maxValue;
     VEBTree* aux;
     vector<VEBTree*> children;
 };
@@ -307,8 +352,8 @@ int main()
     T.Insert( 5 );
     T.Insert( 14 );
     T.Insert( 15 );
-
-   
+    
+   //7 4       0 1 2 3 5 14 15
    /* VEBTree T2( 4 );
     T2.Insert( 15 );
     T2.Insert( 14 );
@@ -352,13 +397,14 @@ int main()
    
    // bool b = T.Find( 1 );
     vector <bool> v;
-    for ( int i = 0; i < 16; i++ )
+    for ( int i = 2; i < 16; i++ )
     {
-        T.Remove( i );
-        cout  << "\t"<<T.Find(i) << endl;
-      /*  T2.Remove( i );
-        v.push_back( T2.Find(i) );*/
-    }
+        //cout << i << '\t' << T.Find( i ) << endl;
 
+        /*T.Remove( i );
+        cout << i  << "\t"<<T.Find(i) << endl;*/
+        cout << i << "\t" << T.Next( i ) << endl;
+    }
+    T;
 }
 
