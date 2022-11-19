@@ -294,9 +294,48 @@ public:
 
 
     }
-    int Prev()
+    ll Prev(ll x)
     {
 
+        if ( _k == 1 )
+        {
+
+            if ( x == 1 && _minValue == 0 )
+            {
+                return 0;
+            }
+            else
+            {
+                return _none;
+            }
+        }
+        else if ( _maxValue != _none && x > _maxValue)
+        {
+            return _maxValue;
+        }
+        else
+        {
+            ll miHigh = children[High( x )]->_minValue;
+            if ( miHigh != _none && Low( x ) > miHigh )
+            {
+                ll offset = children[High( x )]->Prev( Low( x ) );
+                return Merge( High( x ), offset );
+            }
+            else
+            {
+                ll pred = aux->Prev( High( x ) );
+                if ( pred == _none )
+                {
+                    if ( _minValue != _none && x > _minValue )
+                        return _minValue;
+                    return _none;
+                }
+                else
+                {
+                    return Merge( pred, children[pred]->_maxValue );
+                }
+            }
+        }
     }
     ll GetMin()
     {
@@ -397,13 +436,13 @@ int main()
    
    // bool b = T.Find( 1 );
     vector <bool> v;
-    for ( int i = 2; i < 16; i++ )
+    for ( int i = 15; i >=0; i-- )
     {
         //cout << i << '\t' << T.Find( i ) << endl;
 
         /*T.Remove( i );
         cout << i  << "\t"<<T.Find(i) << endl;*/
-        cout << i << "\t" << T.Next( i ) << endl;
+        cout << i << "\t" << T.Prev( i ) << endl;
     }
     T;
 }
