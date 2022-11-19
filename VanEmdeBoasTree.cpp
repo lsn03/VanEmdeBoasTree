@@ -75,13 +75,9 @@ public:
                 if ( children[High( x )]->Empty() )
                 {
                     aux->Insert( High( x ) );
-                    children[High( x )]->_minValue = Low( x );
-                    children[High( x )]->_maxValue = Low( x );
                 }
-                else
-                {
                     children[High( x )]->Insert( Low( x ) );
-                }
+                    
 
             }
             if ( x > _maxValue )
@@ -436,13 +432,14 @@ int main()
    
    // bool b = T.Find( 1 );
     vector <bool> v;
-    for ( int i = 15; i >=0; i-- )
+    for ( int i = 0; i <16; i++ )
     {
         //cout << i << '\t' << T.Find( i ) << endl;
 
         /*T.Remove( i );
         cout << i  << "\t"<<T.Find(i) << endl;*/
-        cout << i << "\t" << T.Prev( i ) << endl;
+         //cout << i << "\t" << T.Next( i ) << endl;
+       // cout << i << "\t" << T.Prev( i ) << endl;
     }
     T;
 }
