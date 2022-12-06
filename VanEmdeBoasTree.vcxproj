@@ -148,6 +148,12 @@
     <None Include="2.ans" />
     <None Include="2.in" />
     <None Include="2.out" />
+    <None Include="3.ans" />
+    <None Include="3.in" />
+    <None Include="3.out" />
+    <None Include="4.ans" />
+    <None Include="4.in" />
+    <None Include="4.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

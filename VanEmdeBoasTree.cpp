@@ -386,7 +386,7 @@ void StartTest()
     string command;
     ll value;
     bool flag = false;
-    int commonTests = 2;
+    int commonTests = 3;
     for ( int i = 1; i <= commonTests; i++ )
     {
         ifstream fin( to_string(i)+".in" );
@@ -459,6 +459,7 @@ void StartTest()
         {
             cout << "Test # " << i << " WA" << endl;
         }
+
         fin1.close();
         finans.close();
         T.~VEBTree();

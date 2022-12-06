@@ -38,5 +38,23 @@
     <None Include="2.out">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="3.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="3.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="3.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="4.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="4.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="4.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
 </Project>
