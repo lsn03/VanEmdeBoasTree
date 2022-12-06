@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 using namespace std;
 #define ll  long long
 
@@ -374,20 +375,115 @@ private:
     vector<VEBTree*> children;
 };
 
+
+void StartTest()
+{
+    int k;
+    int cnt;
+
+    int cntTest;
+    int _cntTest = 0;
+    string command;
+    ll value;
+    bool flag = false;
+    int commonTests = 2;
+    for ( int i = 1; i <= commonTests; i++ )
+    {
+        ifstream fin( to_string(i)+".in" );
+        ofstream fout( to_string( i ) + ".out" );
+
+        fin >> k >> cnt;
+        VEBTree T( k );
+        for ( int i = 0; i < cnt; i++ )
+        {
+            fin >> value;
+            T.Insert( value );
+        }
+
+        fin >> cntTest;
+
+        for ( int i = 0; i < cntTest; i++ )
+        {
+            fin >> command >> value;
+            if ( command == "del" )
+            {
+                T.Remove( value );
+            }
+            else if ( command == "find" )
+            {
+                _cntTest++;
+                fout << bool( T.Find( value ) ) << endl;
+
+            }
+            else if ( command == "next" )
+            {
+                _cntTest++;
+                fout << T.Next( value ) << endl;
+            }
+            else if ( command == "prev" )
+            {
+                _cntTest++;
+                fout << T.Prev( value ) << endl;
+            }
+        }
+        fin.close();
+        fout.close();
+
+        ifstream fin1( to_string( i ) + ".out" );
+        ifstream finans( to_string( i ) + ".ans" );
+        string res;
+        string currentRes;
+
+
+        for ( int i = 0; i < _cntTest; i++ )
+        {
+            fin1 >> res;
+            finans >> currentRes;
+
+            if ( res == currentRes )
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+                break;
+            }
+
+        }
+        if ( flag )
+        {
+            cout << "Test # " << i << " OK" << endl;
+        }
+        else
+        {
+            cout << "Test # " << i << " WA" << endl;
+        }
+        fin1.close();
+        finans.close();
+        T.~VEBTree();
+    }
+    
+
+}
 int main()
 {
-    ifstream fin( "1.in" );
-    fin.close();
 
-    VEBTree T( 4 );
-    T.Insert( 0 );
-    T.Insert( 1 );
-    T.Insert( 2 );
-    T.Insert( 3 );
-    T.Insert( 5 );
-    T.Insert( 14 );
-    T.Insert( 15 );
+    StartTest();
+    /*
+4
+7
+
+0 1 2 3 5 14 15
+
+3
+del 5
+find 5
+next 5
+
+    */
     
+
    //7 4       0 1 2 3 5 14 15
    /* VEBTree T2( 4 );
     T2.Insert( 15 );
@@ -431,7 +527,7 @@ int main()
     T.Find( 15 );*/
    
    // bool b = T.Find( 1 );
-    vector <bool> v;
+    //vector <bool> v;
     for ( int i = 0; i <16; i++ )
     {
         //cout << i << '\t' << T.Find( i ) << endl;
@@ -441,6 +537,6 @@ int main()
          //cout << i << "\t" << T.Next( i ) << endl;
        // cout << i << "\t" << T.Prev( i ) << endl;
     }
-    T;
+    
 }
 

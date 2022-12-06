@@ -29,5 +29,14 @@
     <None Include="1.ans">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="2.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="2.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="2.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
 </Project>
