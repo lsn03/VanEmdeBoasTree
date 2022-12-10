@@ -56,5 +56,320 @@
     <None Include="4.out">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="5.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="5.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="5.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="6.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="6.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="6.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="7.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="7.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="7.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="8.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="8.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="8.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="9.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="9.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="9.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="10.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="10.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="10.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="11.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="11.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="11.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="12.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="12.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="12.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="13.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="13.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="13.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="14.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="14.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="14.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="15.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="15.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="15.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="16.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="16.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="16.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="17.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="17.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="17.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="18.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="18.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="18.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="19.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="19.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="19.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="20.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="20.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="20.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="21.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="21.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="21.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="22.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="22.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="22.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="23.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="23.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="23.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="24.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="24.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="24.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="25.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="25.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="25.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="26.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="26.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="26.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="27.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="27.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="27.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="28.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="28.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="28.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="29.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="29.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="29.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="30.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="30.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="30.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="31.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="31.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="31.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="32.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="32.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="32.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="33.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="33.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="33.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="34.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="34.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="34.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="35.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="35.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="35.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="36.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="36.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="36.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="37.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="37.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="37.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="38.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="38.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="38.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="39.ans">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="39.in">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="39.out">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
 </Project>

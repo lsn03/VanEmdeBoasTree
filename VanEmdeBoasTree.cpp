@@ -376,7 +376,7 @@ private:
 };
 
 
-void StartTest()
+void StartTest( int commonTests )
 {
     int k;
     int cnt;
@@ -386,7 +386,7 @@ void StartTest()
     string command;
     ll value;
     bool flag = false;
-    int commonTests = 3;
+    
     for ( int i = 1; i <= commonTests; i++ )
     {
         ifstream fin( to_string(i)+".in" );
@@ -453,11 +453,11 @@ void StartTest()
         }
         if ( flag )
         {
-            cout << "Test # " << i << " OK" << endl;
+            cout << i << " OK" << endl;
         }
         else
         {
-            cout << "Test # " << i << " WA" << endl;
+            cout <<  i << " WA" << endl;
         }
 
         fin1.close();
@@ -469,8 +469,8 @@ void StartTest()
 }
 int main()
 {
-
-    StartTest();
+    int cnt = 4;
+    StartTest( cnt );
     /*
 4
 7
