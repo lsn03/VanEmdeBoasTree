@@ -38,7 +38,7 @@ public:
    
     ~VEBTree()
     {
-
+       // delete aux;
     }
     bool Find(ll x )
     {
@@ -529,7 +529,7 @@ next 5
    
    // bool b = T.Find( 1 );
     //vector <bool> v;
-    for ( int i = 0; i <16; i++ )
+    //for ( int i = 0; i <16; i++ )
     {
         //cout << i << '\t' << T.Find( i ) << endl;
 
