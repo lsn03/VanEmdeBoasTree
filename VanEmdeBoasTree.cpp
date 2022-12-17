@@ -287,7 +287,7 @@ void StartTest( int commonTests )
 	
 	int maxdelta = -1;
 	
-	for ( int i = 1; i <= commonTests; i++ )
+	for ( int i = 4; i <= commonTests; i++ )
 	{
 		flag = false;
 		ifstream fin( to_string(i)+".in" );
@@ -310,6 +310,7 @@ void StartTest( int commonTests )
 				break;
 			}
 		}
+		
 		flag = false;
 
 		fin >> cntTest;
@@ -361,6 +362,8 @@ void StartTest( int commonTests )
 			if ( delta >= TIME_LIMIT )
 			{
 				flag = true;
+				cout << "Time Limit on:"<< i  << " value: "<< value << endl;
+				break;
 			}
 		}
 		
