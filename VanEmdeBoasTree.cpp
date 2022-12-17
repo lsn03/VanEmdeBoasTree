@@ -12,13 +12,13 @@ int const TIME_LIMIT = 100;
 class VEBTree
 {
 public:
-	VEBTree( int K )
+	VEBTree( ll U )
 	{
-		_k = K;
+		_u = U;
 	   
 		_minValue = _none;
 		_maxValue = _none;
-		if ( _k <= 1 )
+		if ( _u <= 2 )
 		{
 			aux = NULL;
 			children = vector<VEBTree*>( 0 );
@@ -26,13 +26,13 @@ public:
 		}
 		else
 		{
-			int size = 1 << (_k >> 1);
+			int size = ceil( sqrt( _u ) );
 			children = vector<VEBTree*>( size );
-			aux = new VEBTree( _k>>1 );
+			aux = new VEBTree( size );
 
 			for ( int i = 0; i < size; i++ )
 			{
-				children[i] = new VEBTree( _k >> 1 );
+				children[i] = new VEBTree( size );
 			}
 		}
 	}
@@ -50,44 +50,50 @@ public:
 			
 		}
 
-		if ( x >= (1<<_k) ) return false;
-		if ( _minValue == x && _maxValue != 0 || _maxValue == x ) return true;
+		if ( x >= _u ) return false;
+		if ( _minValue == x || _maxValue == x ) return true;
 		return children[High(x)]->Find(Low(x));
 		
 	}
-	void Insert( ll x)
+	void Insert( ll x )
 	{
-		
+
 
 		if ( Empty() )
 		{
 			_minValue = x;
 			_maxValue = x;
-			
+
 		}
 		else
 		{
-			
+
 			if ( x < _minValue )
 			{
 				Swap( x, _minValue );
 			}
-		   
-			if ( _k != 1 )
+
+			if ( _u > 2 )
 			{
 				if ( children[High( x )]->Empty() )
 				{
 					aux->Insert( High( x ) );
+					children[High( x )]->_minValue = Low( x );
+					children[High( x )]->_maxValue = Low( x );
 				}
+				else
+				{
 					children[High( x )]->Insert( Low( x ) );
-					
+				}
+
+
 
 			}
 			if ( x > _maxValue )
 			{
 				_maxValue = x;
 			}
-			
+
 		}
 	}
 	void Remove(ll x)
@@ -130,10 +136,10 @@ public:
 		}
 		
 	}
-	ll Next(ll x)
+	ll Next( ll x )
 	{
-		
-		if ( _k == 1 )
+
+		if ( _u == 2 )
 		{
 
 			if ( x == 0 && _maxValue == 1 )
@@ -172,131 +178,11 @@ public:
 		}
 
 
-		/*if ( x <= _minValue )
-		{
-			return _minValue;
-		}
-		if ( Empty() || x >= _maxValue )
-		{
-			return _none;
-		}
-		if ( _k == 1 )
-		{
-			return _maxValue == x ? x : _none;
-		}
-		ULL x_High = High( x );
-		ULL x_Low = Low( x );
-
-		if ( children[x_High] != NULL && x_Low <= children[x_High]->_maxValue )
-		{
-			return Merge( x_High, children[x_High]->Next( x_Low ) );
-		}
-		else if ( aux != NULL )
-		{
-			ULL nextHigh = aux->Next( x_High + 1 );
-			if ( nextHigh != _none )
-			{
-				return Merge( nextHigh, children[nextHigh]->_minValue );
-			}
-		}
-		return _none;*/
-		/*
-		if ( Empty() || x >= _maxValue )
-		{
-			return _none;
-		}
-		if ( x < _minValue )
-		{
-			return _minValue;
-		}
-		if ( x == _minValue )
-		{
-			if ( aux->Empty() )
-			{
-				return _maxValue;
-			}
-			return Merge( aux->_minValue, children[aux->_minValue]->_maxValue );
-		}
-		int a = children[High( x )]->Next( Low( x ) );
-		if ( a != _none )
-		{
-			return Merge( High( x ), a );
-		}
-		int b = aux->Next( High( x ) );
-		if ( b == _none )
-		{
-			return _maxValue;
-		}
-		return Merge( b, children[b]->_minValue );
-		*/
-		/*
-		if ( Empty() || x >= _maxValue )
-		{
-			return _none;
-		}
-		if ( x < _minValue )
-		{
-			return _minValue;
-
-		}
-		if ( aux->Empty() )
-		{
-			return _maxValue;
-		}
-		if ( !(children[High( x )]->Empty()) && Low( x ) < children[High( x )]->_maxValue )
-		{
-			return Merge( High( x ), children[High( x )]->Next( Low( x ) ) );
-		}
-		else
-		{
-			int next_high = aux->Next( High( x ) );
-			if ( next_high != _none )
-				return Merge( next_high, children[next_high]->_minValue );
-			else
-			{
-				return _maxValue;
-			}
-		   // return _none;
-		}*/
-
-		/*if ( Empty() || x > _maxValue )
-		{
-			return _none;
-		}
-		if ( x <= _minValue )
-		{
-			return _minValue;
-
-		}
-		if ( _k == 1 )
-		{
-			if ( _maxValue == x )
-			{
-				return _maxValue;
-			}
-			else
-			{
-				return _none;
-			}
-		}
-		if ( !(children[High( x )]->Empty()) && Low( x ) <= children[High( x )]->_maxValue)
-		{
-			return Merge( High( x ), children[High( x )]->Next( Low( x ) ));
-		}
-		else
-		{
-			int next_high = aux->Next( High( x ) + 1 );
-			if ( next_high != _none )
-				return Merge( next_high, children[next_high]->_minValue );
-			return _none;
-		}*/
-
-
 	}
 	ll Prev(ll x)
 	{
 
-		if ( _k == 1 )
+		if ( _u == 2 )
 		{
 
 			if ( x == 1 && _minValue == 0 )
@@ -355,15 +241,21 @@ public:
 private:
 	ll Low( ll key )
 	{
-		return (key & ((1 << (_k / 2)) - 1));
+		ll mod = ceil( sqrt( _u ) );
+		return key % mod;
+		
 	}
 	ll High(ll key)
 	{
-		return (key >> (_k / 2));
+		ll div = ceil( sqrt( _u ) );
+		return key / div;
+	
 	}
 	ll Merge(ll high,ll low)
 	{
-		return (high << (_k / 2) )+low;
+		ll ru = ceil( sqrt( _u ) );
+		return high * ru + low;
+		
 	}
 	void Swap( ll& a, ll& b )
 	{
@@ -371,7 +263,7 @@ private:
 		a = b;
 		b = temp;
 	}
-	int _k;
+	ll _u;
 	ll _minValue, _maxValue;
 	VEBTree* aux;
 	vector<VEBTree*> children;
@@ -393,9 +285,9 @@ void StartTest( int commonTests )
 	int endTime;
 	int delta = 0;
 	
+	int maxdelta = -1;
 	
-
-	for ( int i = 4; i <= commonTests; i++ )
+	for ( int i = 1; i <= commonTests; i++ )
 	{
 		flag = false;
 		ifstream fin( to_string(i)+".in" );
@@ -410,11 +302,12 @@ void StartTest( int commonTests )
 			T.Insert( value );
 			endTime = clock();
 			delta = endTime - startTime;
+			maxdelta = max( delta, maxdelta );
 			if ( delta >= TIME_LIMIT )
 			{
 				flag = true;
-				cout << i << " 1Time Limit: " << delta << " ms" << endl;
-				//break;
+				cout << i << " Time Limit: " << delta << " ms" << endl;
+				break;
 			}
 		}
 		flag = false;
@@ -464,6 +357,7 @@ void StartTest( int commonTests )
 			}
 			endTime = clock();
 			delta = endTime - startTime;
+			maxdelta = max( delta, maxdelta );
 			if ( delta >= TIME_LIMIT )
 			{
 				flag = true;
@@ -502,11 +396,11 @@ void StartTest( int commonTests )
 		}
 		if ( flag )
 		{
-			cout << i << " OK" << endl;
+			cout << i << " OK \t MaxTimeExe: " << maxdelta <<  endl;
 		}
 		else
 		{
-			cout <<  i << " WA" << endl;
+			cout <<  i << " WA \t MaxTimeExe:"<< maxdelta << endl;
 		}
 		
 		fin1.close();
