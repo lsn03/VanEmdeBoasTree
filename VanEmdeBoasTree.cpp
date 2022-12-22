@@ -8,7 +8,7 @@ using namespace std;
 #define ll  long long
 
 ll const _none = -1;
-int const TIME_LIMIT = 100;
+int const TIME_LIMIT = 100000;
 class VEBTree
 {
 public:
@@ -40,14 +40,17 @@ public:
    
 	~VEBTree()
 	{
-	  // delete aux;
+		
+			
+
+		
+	  
 	}
 	bool Find(ll x )
 	{
 		if ( Empty() )
 		{
 			return false;
-			
 		}
 
 		if ( x >= _u ) return false;
@@ -157,8 +160,8 @@ public:
 		}
 		else
 		{
-			ll maxlow = children[High( x )]->_maxValue;
-			if ( maxlow != _none && Low( x ) < maxlow )
+			ll maxHigh = children[High( x )]->_maxValue;
+			if ( maxHigh != _none && Low( x ) < maxHigh )
 			{
 				ll offset = children[High( x )]->Next( Low( x ) );
 				return Merge( High( x ), offset );
@@ -270,7 +273,7 @@ private:
 };
 
 
-void StartTest( int commonTests )
+void StartTest( int startCnt, int endCnt )
 {
 	int k;
 	int cnt;
@@ -280,21 +283,24 @@ void StartTest( int commonTests )
 	string command;
 	ll value;
 	bool flag = false;
-
+	unsigned long long timeFor = 0;
 	int startTime;
 	int endTime;
 	int delta = 0;
 	
-	int maxdelta = -1;
-	
-	for ( int i = 4; i <= commonTests; i++ )
+
+	bool n = false;
+	for ( int i = startCnt; i <= endCnt; i++ )
 	{
+		int maxdelta = -1;
 		flag = false;
 		ifstream fin( to_string(i)+".in" );
 		ofstream fout( to_string( i ) + ".out" );
-
+		ofstream ftime( to_string( i ) + ".time" );
+		
 		fin >> k >> cnt;
 		VEBTree T( k );
+		ftime << "cnt: " << "\t" << k<<endl;
 		for ( int j = 0; j < cnt; j++ )
 		{
 			fin >> value;
@@ -318,7 +324,8 @@ void StartTest( int commonTests )
 		
 		for ( int j = 0; j < cntTest; j++ )
 		{
-			startTime = clock();
+			
+			auto start = std::chrono::steady_clock::now();
 			fin >> command >> value;
 			if ( command == "del" )
 			{
@@ -356,20 +363,44 @@ void StartTest( int commonTests )
 				_cntTest++;
 				fout << T.GetMax() << endl;
 			}
-			endTime = clock();
-			delta = endTime - startTime;
+			
+			auto end = std::chrono::steady_clock::now();
+			auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+			
+			
+			ftime << command << "\t"<< elapsed.count()<<"\t" << value << endl;
+			delta = elapsed.count();
+			//cout << j << " time: " << delta << endl;
+			/*if ( command == "ins"  )
+			{
+				timeFor += delta;
+				
+			}
+			else
+			{
+				if ( !n )
+				{
+					n = true;
+					ofstream ftime( to_string( i ) + ".time" );
+					ftime << "insert: \n cnt: " << j << "\n time: " << timeFor;
+					cout  << "insert: \n cnt: " << j << "\n time: " << timeFor <<endl;
+					ftime.close();
+				}
+				
+			}*/
+			
 			maxdelta = max( delta, maxdelta );
 			if ( delta >= TIME_LIMIT )
 			{
 				flag = true;
-				cout << "Time Limit on:"<< i  << " value: "<< value << endl;
-				break;
+				cout << "Time Limit on: "<< command  << " value: "<< value << endl;
+				//break;
 			}
 		}
 		
 		if ( flag )
 		{
-			cout << i << " Time Limit: " << delta << " ms" << endl;
+			cout << i << " Time Limit: " << delta << " microsecond" << endl;
 			//break;
 		}
 		fin.close();
@@ -415,18 +446,18 @@ void StartTest( int commonTests )
 }
 int main()
 {
-	int cnt = 4;
-	StartTest( cnt );
+	int cntStart = 1,cntEnd = 9;
+	StartTest( cntStart, cntEnd );
 	/*
-4
-7
+		4
+		7
 
-0 1 2 3 5 14 15
+		0 1 2 3 5 14 15
 
-3
-del 5
-find 5
-next 5
+		3
+		del 5
+		find 5
+		next 5
 
 	*/
 	
