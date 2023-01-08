@@ -408,6 +408,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-5.in
 
-*.time
+
+tests/

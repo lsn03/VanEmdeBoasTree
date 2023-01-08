@@ -52,8 +52,6 @@ public:
 		{
 			return false;
 		}
-
-		if ( x >= _u ) return false;
 		if ( _minValue == x || _maxValue == x ) return true;
 		return children[High(x)]->Find(Low(x));
 		
@@ -325,8 +323,9 @@ void StartTest( int startCnt, int endCnt )
 		for ( int j = 0; j < cntTest; j++ )
 		{
 			
-			auto start = std::chrono::steady_clock::now();
+			
 			fin >> command >> value;
+			auto start = std::chrono::steady_clock::now();
 			if ( command == "del" )
 			{
 				T.Remove( value );
