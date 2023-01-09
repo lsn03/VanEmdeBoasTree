@@ -20,7 +20,7 @@ public:
 	ll GetMin();
 	ll GetMax();
 	bool Empty();
-
+	void Foo();
 private:
 	ll Low( ll key )
 	{
@@ -78,13 +78,15 @@ VEBTree::VEBTree( ll U )
 }
 bool VEBTree::Find( ll x )
 {
+	return this == NULL || _minValue == _none? 0:_minValue == x || _maxValue == x?1 : children[High( x )]->Find( Low( x ) );
+	/*
 	if ( Empty() )
 	{
 		return false;
 	}
 	if ( _minValue == x || _maxValue == x ) return true;
 	return children[High( x )]->Find( Low( x ) );
-
+	*/
 }
 void VEBTree::Insert( ll x )
 {
@@ -254,4 +256,21 @@ ll VEBTree::GetMax()
 {
 	return _maxValue;
 }
-VEBTree::~VEBTree(){}
+VEBTree::~VEBTree()
+{
+	//Foo();
+}
+void VEBTree::Foo()
+{
+	if ( _u > 2 )
+	{
+		delete aux;
+		int size = ceil( sqrt( _u ) );
+		for ( int i = 0; i < size; i++ )
+		{
+			children.~vector();
+		}
+		
+	}
+	delete this;
+}
