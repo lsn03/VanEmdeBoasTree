@@ -171,10 +171,6 @@ void StartTest( int startCnt, int endCnt )
 	
 
 }
-void Foo()
-{
-	
-}
 void WriteTest()
 {
 	ll u[7] = { 2097152,4194304,8388608,16777216,33554432,67108864,1048576 };
@@ -201,6 +197,26 @@ void WriteTest()
 			}
 		}
 		
+		fans.close();
+		fin.close();
+	}
+	for ( int i = 20; i <= 26; i++ )
+	{
+		ll currentU = u[i % 7];
+
+		ofstream fin( "tests/" + to_string( i ) + ".in" );
+		ofstream fans( "tests/" + to_string( i ) + ".ans" );
+		fin << currentU << "\n" << 0 << "\n";
+		for ( int i = 0; i < currentU; i++ )
+		{
+			fin << i << endl;
+		}
+		fin << currentU << "\n";
+		for ( int i = 0; i < currentU; i++ )
+		{
+			fin << "find " << i << endl;
+		}
+		fans << 1;
 		fans.close();
 		fin.close();
 	}
@@ -240,7 +256,7 @@ void WriteTest()
 		{
 			fin << "del " << i << endl;
 		}
-		fans << 1;
+		fans << 0;
 		fans.close();
 		fin.close();
 	}
@@ -299,13 +315,117 @@ void WriteTest()
 40 - 26
 */
 
-void InsertMethod( vector<ll> v ) {}
-void RemoveMethod( vector<ll> v ) {}
-void FindMethod( VEBTree& T, vector<ll> v, int i )
+void InsertMethod( VEBTree& T, vector<ll>& v, int number_test )
 {
-	ifstream finans( "tests/" + to_string( i ) + ".ans" );
-	ofstream ftime( "tests/" + to_string( i ) + ".time" );
-	ofstream fout( "tests/" + to_string( i ) + ".out" );
+	ifstream finans( "tests/" + to_string( number_test ) + ".ans" );
+	ofstream ftime( "tests/" + to_string( number_test ) + ".time" );
+	ofstream fout( "tests/" + to_string( number_test ) + ".out" );
+
+	string res;
+	string currentRes;
+	finans >> res;
+
+
+	auto start = std::chrono::steady_clock::now();
+
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		T.Insert( v[i] );
+	}
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	cout << elapsed.count() << endl;
+	return;
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		fout << T.Find( v[i] ) << endl;
+	}
+	fout.close();
+	bool flag = false;
+	ifstream foutCheck( "tests/" + to_string( number_test ) + ".out" );
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		foutCheck >> currentRes;
+		if ( currentRes == res )
+		{
+			flag = true;
+		}
+		else
+		{
+			flag = false;
+			break;
+		}
+	}
+
+	if ( flag )
+	{
+		cout << number_test << " OK \t Perfomance" << endl;
+	}
+	else
+	{
+		cout << number_test << " WA \t Perfomance" << endl;
+	}
+
+	ftime << "insert of" << "\t" << v.size() << "\ntime:\t" << elapsed.count() << endl;
+
+}
+void RemoveMethod( VEBTree& T, vector<ll>& v, int number_test )
+{
+	ifstream finans( "tests/" + to_string( number_test ) + ".ans" );
+	ofstream ftime( "tests/" + to_string( number_test ) + ".time" );
+	ofstream fout( "tests/" + to_string( number_test ) + ".out" );
+
+	string res;
+	string currentRes;
+	finans >> res;
+
+
+	auto start = std::chrono::steady_clock::now();
+
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		T.Remove( v[i] );
+	}
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		fout << T.Find( v[i] ) << endl;
+	}
+	fout.close();
+	bool flag = false;
+	ifstream foutCheck( "tests/" + to_string( number_test ) + ".out" );
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		foutCheck >> currentRes;
+		if ( currentRes == res )
+		{
+			flag = true;
+		}
+		else
+		{
+			flag = false;
+			break;
+		}
+	}
+
+	if ( flag )
+	{
+		cout << number_test << " OK \t Perfomance" << endl;
+	}
+	else
+	{
+		cout << number_test << " WA \t Perfomance" << endl;
+	}
+
+	ftime << "remove of" << "\t" << v.size() << "\ntime:\t" << elapsed.count() << endl;
+}
+void FindMethod( VEBTree& T, vector<ll>& v, int number_test )
+{
+	ifstream finans( "tests/" + to_string( number_test ) + ".ans" );
+	ofstream ftime( "tests/" + to_string( number_test ) + ".time" );
+	ofstream fout( "tests/" + to_string( number_test ) + ".out" );
 
 	string res;
 	string currentRes;
@@ -324,7 +444,7 @@ void FindMethod( VEBTree& T, vector<ll> v, int i )
 	
 	fout.close();
 	bool flag = false;
-	ifstream foutCheck( "tests/" + to_string( i ) + ".out" );
+	ifstream foutCheck( "tests/" + to_string( number_test ) + ".out" );
 	for ( int i = 0; i < v.size(); i++ )
 	{
 		foutCheck >> currentRes;
@@ -341,18 +461,121 @@ void FindMethod( VEBTree& T, vector<ll> v, int i )
 
 	if ( flag )
 	{
-		cout << i << " OK \t Perfomance" << endl;
+		cout << number_test << " OK \t Perfomance" << endl;
 	}
 	else
 	{
-		cout << i << " WA \t Perfomance" << endl;
+		cout << number_test << " WA \t Perfomance" << endl;
 	}
 
-	ftime << "find of" << "\t"<< v.size() << "\n time:\t" << elapsed.count() << endl;
+	ftime << "find of" << "\t"<< v.size() << "\ntime:\t" << elapsed.count() << endl;
 
 }
-void NextMethod( vector<ll> v ) {}
-void PrevMethod( vector<ll> v ) {}
+void NextMethod(VEBTree &T, vector<ll> & v,int number_test )
+{
+	ifstream finans( "tests/" + to_string( number_test ) + ".ans" );
+	ofstream ftime( "tests/" + to_string( number_test ) + ".time" );
+	ofstream fout( "tests/" + to_string( number_test ) + ".out" );
+
+	string res;
+	string currentRes;
+	ll ans_cnt;
+	finans >> ans_cnt;
+
+
+	auto start = std::chrono::steady_clock::now();
+
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		fout << T.Next( v[i] ) << endl;
+	}
+
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+	fout.close();
+	bool flag = false;
+	ifstream foutCheck( "tests/" + to_string( number_test ) + ".out" );
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		foutCheck >> currentRes;
+		finans >> res;
+		
+		if ( currentRes == res )
+		{
+			flag = true;
+		}
+		else
+		{
+			flag = false;
+			break;
+		}
+	}
+
+	if ( flag )
+	{
+		cout << number_test << " OK \t Perfomance" << endl;
+	}
+	else
+	{
+		cout << number_test << " WA \t Perfomance" << endl;
+	}
+
+	ftime << "next of" << "\t" << v.size() << "\ntime:\t" << elapsed.count() << endl;
+
+}
+void PrevMethod( VEBTree& T, vector<ll>& v, int number_test )
+{
+	ifstream finans( "tests/" + to_string( number_test ) + ".ans" );
+	ofstream ftime( "tests/" + to_string( number_test ) + ".time" );
+	ofstream fout( "tests/" + to_string( number_test ) + ".out" );
+
+	string res;
+	string currentRes;
+	ll ans_cnt;
+	finans >> ans_cnt;
+	
+
+
+	auto start = std::chrono::steady_clock::now();
+
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		fout << T.Prev( v[i] ) << endl;
+	}
+
+	auto end = std::chrono::steady_clock::now();
+	auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+
+	fout.close();
+	bool flag = false;
+	ifstream foutCheck( "tests/" + to_string( number_test ) + ".out" );
+	for ( int i = 0; i < v.size(); i++ )
+	{
+		foutCheck >> currentRes;
+		finans >> res;
+		if ( currentRes == res )
+		{
+			flag = true;
+		}
+		else
+		{
+			flag = false;
+			break;
+		}
+	}
+
+	if ( flag )
+	{
+		cout << number_test << " OK \t Perfomance" << endl;
+	}
+	else
+	{
+		cout << number_test << " WA \t Perfomance" << endl;
+	}
+
+	ftime << "next of" << "\t" << v.size() << "\ntime:\t" << elapsed.count() << endl;
+}
 
 void LogicTest()
 {
@@ -513,7 +736,7 @@ void LogicTest()
 
 	
 }
-void PerfomanceTest()
+void PerfomanceTest(int st,int en)
 {
 	int universarySize;
 	int countOfDigitsToFillTree;
@@ -529,7 +752,7 @@ void PerfomanceTest()
 	int delta = 0;
 
 	vector <ll > v;
-	for ( int i = 20; i <=26; i++ )
+	for ( int i = st; i <=en; i++ )
 	{
 		int maxdelta = -1;
 		flag = false;
@@ -560,13 +783,14 @@ void PerfomanceTest()
 			fin >> command >> value;
 			v[j] =  value;
 		}
+
 		if ( method == "ins" )
 		{
-			InsertMethod( v );
+			InsertMethod( T, v, i );
 		}
 		else if ( method == "del" )
 		{
-			RemoveMethod( v );
+			RemoveMethod( T, v, i );
 		}
 		else if ( method == "find" )
 		{
@@ -574,11 +798,11 @@ void PerfomanceTest()
 		}
 		else if ( method == "next" )
 		{
-			NextMethod( v );
+			NextMethod( T,v,i );
 		}
 		else if ( method == "prev" )
 		{
-			PrevMethod( v );
+			PrevMethod(T, v , i);
 		}
 		v.clear();
 		v.resize( 0 );
@@ -588,20 +812,35 @@ void PerfomanceTest()
 
 int main()
 {
-	string digits = "0123456789";
-	string temp = "123456789";
-	int lenght = 500;
-	srand( time(0) );
-	string ans = to_string( temp[rand() % temp.size()] );
-	for ( int i = 0; i < lenght; i++ )
-	{
-		ans += digits[rand() % digits.size()];
-	}
-	cout << ans;
-	
 	//WriteTest();
 	//VEBTree T( 67108864 );
-	//PerfomanceTest();
+	PerfomanceTest( 13,47 );
+	/*int test = -1;
+	if ( test == 1 )
+	{
+		// next
+		PerfomanceTest(13,19);
+	}else if ( test == 2 )
+	{
+		// find
+		PerfomanceTest(20,26);
+	}
+	else if ( test == 3 )
+	{
+		// ins
+		PerfomanceTest(27,33);
+	}
+	else if ( test == 4 )
+	{
+		// del
+		PerfomanceTest(34,40);
+	}
+	else if ( test == 5 )
+	{
+		// prev
+		PerfomanceTest(41, 47 );
+	}
+	*/
 	//int cntStart = 20,cntEnd = 20;
 	//StartTest( cntStart, cntEnd );
 	
