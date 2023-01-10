@@ -169,7 +169,7 @@ prev 0<br/>
  1. Функция Next <br/>
 ![Альтернативный текст](/image/Next.jpg)
 2.  Функция Find <br/>
-![Альтернативный текст](/image/Find.jpg)
+![Альтернативный текст](/image/find.jpg)
 3.  Функция Insert <br/>
 ![Альтернативный текст](/image/Insert.jpg)
 4.  Функция Remove <br/>
